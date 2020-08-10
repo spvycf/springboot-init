@@ -1,0 +1,72 @@
+server:
+  port: 8800
+  tomcat:
+    max-swallow-size: 100MB
+
+
+
+spring:
+  application:
+    name: talkman-saas
+
+  resources:
+    add-mappings: false
+
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+  #返回字段为null不序列化
+  #jackson:
+    #default-property-inclusion: non_null
+
+
+  #MySQL
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://106.15.207.27:3306/talkmanSaas?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    ownerId: 1663239568028702
+    dev: true
+    virtualHost: /
+    publisherConfirms: true
+    publisherReturns: true
+    listener:
+      direct:
+        acknowledge-mode: manual
+      simple:
+        acknowledge-mode: manual
+
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+
+
+xxl:
+    job:
+        accessToken: ''
+        admin:
+            addresses: http://localhost:8002
+        executor:
+            appname: talkman-saas
+            groupId:
+            ip: ''
+            logpath: /var/logs/talkman-job-saas/jobhandler
+            logretentiondays: 10
+            port: 8802
